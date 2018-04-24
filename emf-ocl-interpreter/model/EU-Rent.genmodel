@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/emf-ocl-interpreter/src" modelPluginID="emf-ocl-interpreter"
+    modelName="EU-Rent" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>EU-Rent.ecore</foreignModel>
+  <genPackages prefix="Eurent" disposableProviderFactory="true" ecorePackage="EU-Rent.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="EU-Rent.ecore#//MyEnum">
+      <genEnumLiterals ecoreEnumLiteral="EU-Rent.ecore#//MyEnum/eins"/>
+    </genEnums>
+    <genClasses ecoreClass="EU-Rent.ecore#//Car">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Car/regNum"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EU-Rent.ecore#//Car/carGroup"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EU-Rent.ecore#//Car/rentalAgreement"/>
+      <genOperations ecoreOperation="EU-Rent.ecore#//Car/mostPopular"/>
+    </genClasses>
+    <genClasses ecoreClass="EU-Rent.ecore#//CarGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//CarGroup/category"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EU-Rent.ecore#//CarGroup/car"/>
+    </genClasses>
+    <genClasses ecoreClass="EU-Rent.ecore#//Customer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Customer/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Customer/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Customer/premium"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Customer/discount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Customer/licenseExpDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Customer/birthday"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EU-Rent.ecore#//Customer/rental"/>
+    </genClasses>
+    <genClasses ecoreClass="EU-Rent.ecore#//Branch">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Branch/address"/>
+    </genClasses>
+    <genClasses ecoreClass="EU-Rent.ecore#//Rental">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Rental/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Rental/price"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Rental/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Rental/startingDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Rental/endingDate"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EU-Rent.ecore#//Rental/car"/>
+    </genClasses>
+    <genClasses ecoreClass="EU-Rent.ecore#//BlackListed">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//BlackListed/blackListedDate"/>
+    </genClasses>
+    <genClasses ecoreClass="EU-Rent.ecore#//RentalAgreement"/>
+    <genClasses ecoreClass="EU-Rent.ecore#//Quote">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EU-Rent.ecore#//Quote/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
