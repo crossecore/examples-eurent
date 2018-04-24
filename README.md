@@ -14,20 +14,20 @@ context Quote inv QuoteOverZero: self.value > 0
 Uses EMF's OCL interpreter to execute OCL expressions at runtime (default option "Realisation of OCL embedded within Ecore models" set to "Delegate for interpretation at run-time")
 
 ```java
-public boolean validateBlackListed_NoRentalsBlacklisted(BlackListed blackListed, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(EurentPackage.Literals.BLACK_LISTED,
-				 blackListed,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "NoRentalsBlacklisted",
-				 BLACK_LISTED__NO_RENTALS_BLACKLISTED__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
+public boolean validateQuote_QuoteOverZero(Quote quote, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	return
+		validate
+			(EurentPackage.Literals.QUOTE,
+			 quote,
+			 diagnostics,
+			 context,
+			 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "QuoteOverZero",
+			 QUOTE__QUOTE_OVER_ZERO__EEXPRESSION,
+			 Diagnostic.ERROR,
+			 DIAGNOSTIC_SOURCE,
+			 0);
+}
 ```
 Well, there is not much to see here. 
 What happens in the background is that the constraint is read from the EAnnotation of the EClass Quote as a string and parsed into an ExpressionInOCL object, which is then traversed and evaluated.
@@ -37,31 +37,31 @@ What happens in the background is that the constraint is read from the EAnnotati
 Executes Java code generated from OCL expressions by EMF's code generator (option "Realisation of OCL embedded within Ecore models" set to "Generate Java Code in *Impl classes")
 
 ```java
-	public boolean QuoteOverZero(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+public boolean QuoteOverZero(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 
-		final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, EurentTables.STR_Quote_c_c_QuoteOverZero);
-		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, EurentTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_0;
-		if (le) {
-			symbol_0 = ValueUtil.TRUE_VALUE;
-		}
-		else {
-			/*@Caught*/ /*@NonNull*/ Object CAUGHT_result;
-			try {
-				final /*@NonInvalid*/ BigInteger value = this.getValue();
-				final /*@NonInvalid*/ IntegerValue BOXED_value = value == null ? null : ValueUtil.integerValueOf(value);
-				final /*@Thrown*/ boolean result = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, BOXED_value, EurentTables.INT_0).booleanValue();
-				CAUGHT_result = result;
-			}
-			catch (Exception e) {
-				CAUGHT_result = ValueUtil.createInvalidValue(e);
-			}
-			final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, EurentTables.STR_Quote_c_c_QuoteOverZero, this, (Object)null, diagnostics, context, (Object)null, severity_0, CAUGHT_result, EurentTables.INT_0).booleanValue();
-			symbol_0 = logDiagnostic;
-		}
-		return Boolean.TRUE == symbol_0;
+	final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+	final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, EurentTables.STR_Quote_c_c_QuoteOverZero);
+	final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, EurentTables.INT_0).booleanValue();
+	/*@NonInvalid*/ boolean symbol_0;
+	if (le) {
+		symbol_0 = ValueUtil.TRUE_VALUE;
 	}
+	else {
+		/*@Caught*/ /*@NonNull*/ Object CAUGHT_result;
+		try {
+			final /*@NonInvalid*/ BigInteger value = this.getValue();
+			final /*@NonInvalid*/ IntegerValue BOXED_value = value == null ? null : ValueUtil.integerValueOf(value);
+			final /*@Thrown*/ boolean result = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, BOXED_value, EurentTables.INT_0).booleanValue();
+			CAUGHT_result = result;
+		}
+		catch (Exception e) {
+			CAUGHT_result = ValueUtil.createInvalidValue(e);
+		}
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, EurentTables.STR_Quote_c_c_QuoteOverZero, this, (Object)null, diagnostics, context, (Object)null, severity_0, CAUGHT_result, EurentTables.INT_0).booleanValue();
+		symbol_0 = logDiagnostic;
+	}
+	return Boolean.TRUE == symbol_0;
+}
 ```
 
 ## crossecore-java 
