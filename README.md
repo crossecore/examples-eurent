@@ -30,7 +30,7 @@ public boolean validateQuote_QuoteOverZero(Quote quote, DiagnosticChain diagnost
 }
 ```
 Well, there is not much to see here. 
-What happens in the background is that the constraint is read from the EAnnotation of the EClass Quote as a string and parsed into an ExpressionInOCL object, which is then traversed and evaluated.
+What happens in the background is that the constraint is read from the EAnnotation of the EClass Quote as a string and parsed into an [ExpressionInOCL](http://git.eclipse.org/c/ocl/org.eclipse.ocl.git/tree/plugins/org.eclipse.ocl.pivot/src/org/eclipse/ocl/pivot/internal/evaluation/BasicEvaluationVisitor.java) object, which is then traversed and evaluated by a [BasicEvaluationVisitor](http://git.eclipse.org/c/ocl/org.eclipse.ocl.git/tree/plugins/org.eclipse.ocl.pivot/src/org/eclipse/ocl/pivot/internal/evaluation/BasicEvaluationVisitor.java)
 
 
 ## emf-ocl-java 
