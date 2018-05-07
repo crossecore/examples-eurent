@@ -4,13 +4,9 @@ package eurent.impl;
 
 import eurent.BlackListed;
 import eurent.EurentPackage;
-
 import java.util.Date;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

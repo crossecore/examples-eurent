@@ -17,7 +17,8 @@ import java.util.Date;
  * </ul>
  *
  * @see eurent.EurentPackage#getBlackListed()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NoRentalsBlacklisted'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot NoRentalsBlacklisted='self.rental-&gt;forAll(r|r.startingDate&lt;self.blackListedDate)'"
  * @generated
  */
 public interface BlackListed extends Customer {

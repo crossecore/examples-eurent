@@ -6,6 +6,7 @@ import eurent.*;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 
@@ -40,20 +41,12 @@ public class EurentValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "eurent";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Quote Over Zero' of 'Quote'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int QUOTE__QUOTE_OVER_ZERO = 1;
-
-	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -167,7 +160,46 @@ public class EurentValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateBlackListed(BlackListed blackListed, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(blackListed, diagnostics, context);
+		if (!validate_NoCircularContainment(blackListed, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBlackListed_NoRentalsBlacklisted(blackListed, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the NoRentalsBlacklisted constraint of '<em>Black Listed</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String BLACK_LISTED__NO_RENTALS_BLACKLISTED__EEXPRESSION = "self.rental->forAll(r|r.startingDate<self.blackListedDate)";
+
+	/**
+	 * Validates the NoRentalsBlacklisted constraint of '<em>Black Listed</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBlackListed_NoRentalsBlacklisted(BlackListed blackListed, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(EurentPackage.Literals.BLACK_LISTED,
+				 blackListed,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "NoRentalsBlacklisted",
+				 BLACK_LISTED__NO_RENTALS_BLACKLISTED__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -213,7 +245,18 @@ public class EurentValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateQuote_QuoteOverZero(Quote quote, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return quote.QuoteOverZero(diagnostics, context);
+		return
+			validate
+				(EurentPackage.Literals.QUOTE,
+				 quote,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "QuoteOverZero",
+				 QUOTE__QUOTE_OVER_ZERO__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

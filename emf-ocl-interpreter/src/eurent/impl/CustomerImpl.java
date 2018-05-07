@@ -6,16 +6,17 @@ import eurent.Customer;
 import eurent.EurentPackage;
 import eurent.Rental;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -148,14 +149,14 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 	protected Date birthday = BIRTHDAY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRental() <em>Rental</em>}' reference.
+	 * The cached value of the '{@link #getRental() <em>Rental</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRental()
 	 * @generated
 	 * @ordered
 	 */
-	protected Rental rental;
+	protected EList<Rental> rental;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -304,37 +305,11 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Rental getRental() {
-		if (rental != null && rental.eIsProxy()) {
-			InternalEObject oldRental = (InternalEObject)rental;
-			rental = (Rental)eResolveProxy(oldRental);
-			if (rental != oldRental) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EurentPackage.CUSTOMER__RENTAL, oldRental, rental));
-			}
+	public EList<Rental> getRental() {
+		if (rental == null) {
+			rental = new EObjectResolvingEList<Rental>(Rental.class, this, EurentPackage.CUSTOMER__RENTAL);
 		}
 		return rental;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Rental basicGetRental() {
-		return rental;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRental(Rental newRental) {
-		Rental oldRental = rental;
-		rental = newRental;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EurentPackage.CUSTOMER__RENTAL, oldRental, rental));
 	}
 
 	/**
@@ -358,8 +333,7 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 			case EurentPackage.CUSTOMER__BIRTHDAY:
 				return getBirthday();
 			case EurentPackage.CUSTOMER__RENTAL:
-				if (resolve) return getRental();
-				return basicGetRental();
+				return getRental();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -369,6 +343,7 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -391,7 +366,8 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 				setBirthday((Date)newValue);
 				return;
 			case EurentPackage.CUSTOMER__RENTAL:
-				setRental((Rental)newValue);
+				getRental().clear();
+				getRental().addAll((Collection<? extends Rental>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -424,7 +400,7 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 				setBirthday(BIRTHDAY_EDEFAULT);
 				return;
 			case EurentPackage.CUSTOMER__RENTAL:
-				setRental((Rental)null);
+				getRental().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -451,7 +427,7 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 			case EurentPackage.CUSTOMER__BIRTHDAY:
 				return BIRTHDAY_EDEFAULT == null ? birthday != null : !BIRTHDAY_EDEFAULT.equals(birthday);
 			case EurentPackage.CUSTOMER__RENTAL:
-				return rental != null;
+				return rental != null && !rental.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

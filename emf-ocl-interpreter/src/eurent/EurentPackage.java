@@ -235,7 +235,7 @@ public interface EurentPackage extends EPackage {
 	int CUSTOMER__BIRTHDAY = 5;
 
 	/**
-	 * The feature id for the '<em><b>Rental</b></em>' reference.
+	 * The feature id for the '<em><b>Rental</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -445,7 +445,7 @@ public interface EurentPackage extends EPackage {
 	int BLACK_LISTED__BIRTHDAY = CUSTOMER__BIRTHDAY;
 
 	/**
-	 * The feature id for the '<em><b>Rental</b></em>' reference.
+	 * The feature id for the '<em><b>Rental</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -537,22 +537,13 @@ public interface EurentPackage extends EPackage {
 	int QUOTE_FEATURE_COUNT = 1;
 
 	/**
-	 * The operation id for the '<em>Quote Over Zero</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUOTE___QUOTE_OVER_ZERO__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
 	 * The number of operations of the '<em>Quote</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUOTE_OPERATION_COUNT = 1;
+	int QUOTE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link eurent.MyEnum <em>My Enum</em>}' enum.
@@ -727,10 +718,10 @@ public interface EurentPackage extends EPackage {
 	EAttribute getCustomer_Birthday();
 
 	/**
-	 * Returns the meta object for the reference '{@link eurent.Customer#getRental <em>Rental</em>}'.
+	 * Returns the meta object for the reference list '{@link eurent.Customer#getRental <em>Rental</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Rental</em>'.
+	 * @return the meta object for the reference list '<em>Rental</em>'.
 	 * @see eurent.Customer#getRental()
 	 * @see #getCustomer()
 	 * @generated
@@ -885,16 +876,6 @@ public interface EurentPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getQuote_Value();
-
-	/**
-	 * Returns the meta object for the '{@link eurent.Quote#QuoteOverZero(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Quote Over Zero</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Quote Over Zero</em>' operation.
-	 * @see eurent.Quote#QuoteOverZero(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getQuote__QuoteOverZero__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for enum '{@link eurent.MyEnum <em>My Enum</em>}'.
@@ -1056,7 +1037,7 @@ public interface EurentPackage extends EPackage {
 		EAttribute CUSTOMER__BIRTHDAY = eINSTANCE.getCustomer_Birthday();
 
 		/**
-		 * The meta object literal for the '<em><b>Rental</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Rental</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1184,14 +1165,6 @@ public interface EurentPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute QUOTE__VALUE = eINSTANCE.getQuote_Value();
-
-		/**
-		 * The meta object literal for the '<em><b>Quote Over Zero</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation QUOTE___QUOTE_OVER_ZERO__DIAGNOSTICCHAIN_MAP = eINSTANCE.getQuote__QuoteOverZero__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link eurent.MyEnum <em>My Enum</em>}' enum.

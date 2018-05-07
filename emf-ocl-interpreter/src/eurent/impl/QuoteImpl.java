@@ -4,29 +4,10 @@ package eurent.impl;
 
 import eurent.EurentPackage;
 import eurent.Quote;
-
-import eurent.util.EurentValidator;
-import java.lang.reflect.InvocationTargetException;
-
-import java.math.BigInteger;
-
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,7 +31,7 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigInteger VALUE_EDEFAULT = null;
+	protected static final int VALUE_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -60,7 +41,7 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	 * @generated
 	 * @ordered
 	 */
-	protected BigInteger value = VALUE_EDEFAULT;
+	protected int value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -86,7 +67,7 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BigInteger getValue() {
+	public int getValue() {
 		return value;
 	}
 
@@ -95,47 +76,19 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(BigInteger newValue) {
-		BigInteger oldValue = value;
+	public void setValue(int newValue) {
+		int oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EurentPackage.QUOTE__VALUE, oldValue, value));
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #QuoteOverZero(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Quote Over Zero</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #QuoteOverZero(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
-	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate QUOTE_OVER_ZERO_DIAGNOSTIC_CHAIN_MAP__EINVOCATION_DELEGATE = ((EOperation.Internal)EurentPackage.Literals.QUOTE___QUOTE_OVER_ZERO__DIAGNOSTICCHAIN_MAP).getInvocationDelegate();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean QuoteOverZero(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO: implement this method
-		// -> specify the condition that violates the invariant
-		// -> verify the details of the diagnostic, including severity and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 EurentValidator.DIAGNOSTIC_SOURCE,
-						 EurentValidator.QUOTE__QUOTE_OVER_ZERO,
-						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "QuoteOverZero", EObjectValidator.getObjectLabel(this, context) }),
-						 new Object [] { this }));
-			}
-			return false;
-		}
-		return true;
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,7 +113,7 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EurentPackage.QUOTE__VALUE:
-				setValue((BigInteger)newValue);
+				setValue((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -190,24 +143,9 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case EurentPackage.QUOTE__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case EurentPackage.QUOTE___QUOTE_OVER_ZERO__DIAGNOSTICCHAIN_MAP:
-				return QuoteOverZero((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

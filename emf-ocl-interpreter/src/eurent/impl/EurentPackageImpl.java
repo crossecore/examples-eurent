@@ -19,7 +19,6 @@ import eurent.util.EurentValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -442,15 +441,6 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getQuote__QuoteOverZero__DiagnosticChain_Map() {
-		return quoteEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getMyEnum() {
 		return myEnumEEnum;
 	}
@@ -520,7 +510,6 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 
 		quoteEClass = createEClass(QUOTE);
 		createEAttribute(quoteEClass, QUOTE__VALUE);
-		createEOperation(quoteEClass, QUOTE___QUOTE_OVER_ZERO__DIAGNOSTICCHAIN_MAP);
 
 		// Create enums
 		myEnumEEnum = createEEnum(MY_ENUM);
@@ -575,7 +564,7 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 		initEAttribute(getCustomer_Discount(), ecorePackage.getEInt(), "discount", null, 1, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCustomer_LicenseExpDate(), ecorePackage.getEDate(), "licenseExpDate", null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCustomer_Birthday(), ecorePackage.getEDate(), "birthday", null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCustomer_Rental(), this.getRental(), null, "rental", null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCustomer_Rental(), this.getRental(), null, "rental", null, 0, -1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(branchEClass, Branch.class, "Branch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBranch_Address(), ecorePackage.getEString(), "address", null, 0, 1, Branch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -594,16 +583,7 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 		initEClass(rentalAgreementEClass, RentalAgreement.class, "RentalAgreement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(quoteEClass, Quote.class, "Quote", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getQuote_Value(), ecorePackage.getEBigInteger(), "value", null, 0, 1, Quote.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		EOperation op = initEOperation(getQuote__QuoteOverZero__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "QuoteOverZero", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
-		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEAttribute(getQuote_Value(), ecorePackage.getEInt(), "value", null, 0, 1, Quote.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(myEnumEEnum, MyEnum.class, "MyEnum");
@@ -656,9 +636,16 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
 		   });	
 		addAnnotation
+		  (blackListedEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "NoRentalsBlacklisted"
+		   });	
+		addAnnotation
 		  (quoteEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "QuoteOverZero"
 		   });
 	}
 
@@ -680,7 +667,13 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 		  (getCustomer_Discount(), 
 		   source, 
 		   new String[] {
-			 "derivation", "\n\t\t\t\tif not self.premium then\n\t\t\t\t\tif self.rental.car.carGroup->select(c|c.category=\'high\')->size()>5\n\t\t\t\t\tthen 15\n\t\t\t\t\telse 0 \n\t\t\t\t\tendif\n\t\t\t\telse 30 \n\t\t\t\tendif"
+			 "derivation", "if not self.premium then if self.rental.car.carGroup->select(c|c.category=\'high\')->size()>5 then 15 else 0 endif else 30 endif"
+		   });	
+		addAnnotation
+		  (blackListedEClass, 
+		   source, 
+		   new String[] {
+			 "NoRentalsBlacklisted", "self.rental->forAll(r|r.startingDate<self.blackListedDate)"
 		   });	
 		addAnnotation
 		  (quoteEClass, 

@@ -4,6 +4,7 @@ package eurent;
 
 import java.util.Date;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -119,7 +120,7 @@ public interface Customer extends EObject {
 	 * @see #setDiscount(int)
 	 * @see eurent.EurentPackage#getCustomer_Discount()
 	 * @model required="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n\t\t\t\tif not self.premium then\n\t\t\t\t\tif self.rental.car.carGroup-&gt;select(c|c.category=\'high\')-&gt;size()&gt;5\n\t\t\t\t\tthen 15\n\t\t\t\t\telse 0 \n\t\t\t\t\tendif\n\t\t\t\telse 30 \n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if not self.premium then if self.rental.car.carGroup-&gt;select(c|c.category=\'high\')-&gt;size()&gt;5 then 15 else 0 endif else 30 endif'"
 	 * @generated
 	 */
 	int getDiscount();
@@ -187,29 +188,19 @@ public interface Customer extends EObject {
 	void setBirthday(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Rental</b></em>' reference.
+	 * Returns the value of the '<em><b>Rental</b></em>' reference list.
+	 * The list contents are of type {@link eurent.Rental}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Rental</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rental</em>' reference.
-	 * @see #setRental(Rental)
+	 * @return the value of the '<em>Rental</em>' reference list.
 	 * @see eurent.EurentPackage#getCustomer_Rental()
 	 * @model
 	 * @generated
 	 */
-	Rental getRental();
-
-	/**
-	 * Sets the value of the '{@link eurent.Customer#getRental <em>Rental</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rental</em>' reference.
-	 * @see #getRental()
-	 * @generated
-	 */
-	void setRental(Rental value);
+	EList<Rental> getRental();
 
 } // Customer
