@@ -233,3 +233,5 @@ gradle-app.setting
 
 
 **/xtend-gen/
+
+!**/lib/*.jar
