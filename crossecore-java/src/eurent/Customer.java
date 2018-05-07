@@ -16,8 +16,6 @@ extends org.eclipse.emf.ecore.EObject
 	void setLicenseExpDate(java.util.Date value);
 	java.util.Date getBirthday();
 	void setBirthday(java.util.Date value);
-	
-	Rental getRental();
-	void setRental(Rental value);
+	Ocllib.OrderedSet<Rental> getRental();
 	
 }

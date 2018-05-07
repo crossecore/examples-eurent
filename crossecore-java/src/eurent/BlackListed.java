@@ -7,5 +7,6 @@ public interface BlackListed
 	
 	java.util.Date getBlackListedDate();
 	void setBlackListedDate(java.util.Date value);
+	public boolean NoRentalsBlacklisted(org.eclipse.emf.common.util.DiagnosticChain diagnostics, java.util.Map<Object, Object> context);
 	
 }

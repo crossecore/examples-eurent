@@ -10,15 +10,8 @@ extends org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container implements Custo
 {
 	public int getDiscount()
 	{
-		/*
-						if not self.premium then
-							if self.rental.car.carGroup->select(c|c.category='high')->size()>5
-							then 15
-							else 0 
-							endif
-						else 30 
-						endif*/
-		return ! this.getPremium() ? this.getRental().getCar().collect(temp1 -> temp1.getCarGroup()).select(c -> c.getCategory() == "high").size() > 5 ? 15 : 0 : 30;
+		/*if not self.premium then if self.rental.car.carGroup->select(c|c.category='high')->size()>5 then 15 else 0 endif else 30 endif*/
+		return ! this.getPremium() ? this.getRental().collect2(Car.class, temp1 -> temp1.getCar()).collect(CarGroup.class, temp2 -> temp2.getCarGroup()).select(c -> c.getCategory() == "high").size() > 5 ? 15 : 0 : 30;
 	}
 	
 	private java.util.Date _birthday = null;
@@ -91,20 +84,15 @@ extends org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container implements Custo
 		
 	}
 	
-	private Rental _rental;
-	public Rental getRental()
+	private Ocllib.OrderedSet<Rental> _rental;
+	
+	public Ocllib.OrderedSet<Rental> getRental()
 	{
-		
-			return _rental;
-		
-		
-	}
-	public void setRental(Rental value){
-		Rental oldvalue = _rental;
-		_rental = value;
-		if (eNotificationRequired()){
-			eNotify(new ENotificationImpl(this, NotificationImpl.SET,EurentPackageImpl.CUSTOMER_RENTAL , oldvalue, value));
+		if(_rental==null){
+			_rental = new Ocllib.OrderedSet<Rental>(Rental.class, this, EurentPackageImpl.CUSTOMER_RENTAL, EOPPOSITE_FEATURE_BASE - EurentPackageImpl.CUSTOMER_RENTAL);
 		}
+		return _rental;
+	
 	}
 
 	
@@ -114,20 +102,6 @@ extends org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container implements Custo
 	}
 	
 	
-	public NotificationChain basicSetRental(Rental newobj, NotificationChain msgs) {
-		Rental oldobj = _rental;
-		_rental = newobj;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, NotificationImpl.SET, EurentPackageImpl.CUSTOMER_RENTAL, oldobj, newobj);
-			if (msgs == null){
-				msgs = notification;
-			}
-			else{
-				msgs.add(notification);
-			}
-		}
-		return msgs;
-	}
 	
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
@@ -169,7 +143,8 @@ extends org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container implements Custo
 				setBirthday((java.util.Date) newValue);
 				return;
 			case EurentPackageImpl.CUSTOMER_RENTAL:
-				setRental((Rental) newValue);
+				getRental().clear();
+				getRental().addAll((java.util.Collection<? extends Rental>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

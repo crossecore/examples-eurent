@@ -300,7 +300,7 @@ public class EurentPackageImpl extends org.eclipse.emf.ecore.impl.EPackageImpl i
 				"rental", 
 				null, 
 				0, 
-				1, 
+				-1, 
 				Customer.class, 
 				!IS_TRANSIENT, 
 				!IS_VOLATILE, 

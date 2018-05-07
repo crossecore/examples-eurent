@@ -8,14 +8,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class QuoteBase 
 extends org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container implements Quote
 {
-	private java.math.BigInteger _value = null;
-	public java.math.BigInteger getValue()
+	private int _value = 0;
+	public int getValue()
 	{
 		return _value;
 	}
-	public void setValue(java.math.BigInteger value){
+	public void setValue(int value){
 		
-		java.math.BigInteger oldValue = _value;
+		int oldValue = _value;
 		_value = value;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EurentPackageImpl.QUOTE_VALUE, oldValue, value));
@@ -44,7 +44,7 @@ extends org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container implements Quote
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EurentPackageImpl.QUOTE_VALUE:
-				setValue((java.math.BigInteger) newValue);
+				setValue((int) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -52,7 +52,7 @@ extends org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container implements Quote
 	
 	public boolean QuoteOverZero(org.eclipse.emf.common.util.DiagnosticChain diagnostics, java.util.Map<Object, Object> context)
 	{
-		return this.getValue().intValue() > 0;
+		return this.getValue() > 0;
 	}
 	
 }

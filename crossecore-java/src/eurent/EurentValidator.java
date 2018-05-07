@@ -71,9 +71,25 @@
 		
 		public boolean validateBlackListed(BlackListed obj, DiagnosticChain diagnostics, Map<Object, Object> context)
 		{
-		return validate_EveryDefaultConstraint(obj, diagnostics, context);
+		if (!validate_NoCircularContainment(obj, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(obj, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(obj, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(obj, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(obj, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(obj, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(obj, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(obj, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(obj, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBlackListed_NoRentalsBlacklisted(obj, diagnostics, context);
+		return result;
 			        }
 		
+		
+		public boolean validateBlackListed_NoRentalsBlacklisted(BlackListed obj, DiagnosticChain diagnostics, Map<Object, Object> context)
+		{
+		    return obj.NoRentalsBlacklisted(diagnostics, context);
+		
+		}
 		
 		public boolean validateRentalAgreement(RentalAgreement obj, DiagnosticChain diagnostics, Map<Object, Object> context)
 		{

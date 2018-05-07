@@ -50,5 +50,9 @@ extends CustomerImpl implements BlackListed
 		super.eSet(featureID, newValue);
 	}
 	
+	public boolean NoRentalsBlacklisted(org.eclipse.emf.common.util.DiagnosticChain diagnostics, java.util.Map<Object, Object> context)
+	{
+		return this.getRental().forAll(r -> r.getStartingDate().compareTo(this.getBlackListedDate())>0);
+	}
 	
 }
