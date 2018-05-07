@@ -38,7 +38,19 @@ Executes Java code generated from OCL expressions by EMF's code generator (optio
 
 ```java
 public boolean QuoteOverZero(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-
+	/**
+	 *
+	 * inv QuoteOverZero:
+	 *   let severity : Integer[1] = 'Quote::QuoteOverZero'.getSeverity()
+	 *   in
+	 *     if severity <= 0
+	 *     then true
+	 *     else
+	 *       let result : Boolean[1] = self.value > 0
+	 *       in
+	 *         'Quote::QuoteOverZero'.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+	 *     endif
+	 */
 	final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 	final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, EurentTables.STR_Quote_c_c_QuoteOverZero);
 	final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, EurentTables.INT_0).booleanValue();
@@ -47,17 +59,10 @@ public boolean QuoteOverZero(final DiagnosticChain diagnostics, final Map<Object
 		symbol_0 = ValueUtil.TRUE_VALUE;
 	}
 	else {
-		/*@Caught*/ /*@NonNull*/ Object CAUGHT_result;
-		try {
-			final /*@NonInvalid*/ BigInteger value = this.getValue();
-			final /*@NonInvalid*/ IntegerValue BOXED_value = value == null ? null : ValueUtil.integerValueOf(value);
-			final /*@Thrown*/ boolean result = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, BOXED_value, EurentTables.INT_0).booleanValue();
-			CAUGHT_result = result;
-		}
-		catch (Exception e) {
-			CAUGHT_result = ValueUtil.createInvalidValue(e);
-		}
-		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, EurentTables.STR_Quote_c_c_QuoteOverZero, this, (Object)null, diagnostics, context, (Object)null, severity_0, CAUGHT_result, EurentTables.INT_0).booleanValue();
+		final /*@NonInvalid*/ int value = this.getValue();
+		final /*@NonInvalid*/ IntegerValue BOXED_value = ValueUtil.integerValueOf(value);
+		final /*@NonInvalid*/ boolean result = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, BOXED_value, EurentTables.INT_0).booleanValue();
+		final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, EurentTables.STR_Quote_c_c_QuoteOverZero, this, (Object)null, diagnostics, context, (Object)null, severity_0, result, EurentTables.INT_0).booleanValue();
 		symbol_0 = logDiagnostic;
 	}
 	return Boolean.TRUE == symbol_0;
