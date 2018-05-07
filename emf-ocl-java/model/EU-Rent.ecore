@@ -42,12 +42,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="discount" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="&#xA;&#x9;&#x9;&#x9;&#x9;if not self.premium then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if self.rental.car.carGroup->select(c|c.category='high')->size()>5&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;then 15&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else 0 &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else 30 &#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+        <details key="derivation" value="if not self.premium then if self.rental.car.carGroup->select(c|c.category='high')->size()>5 then 15 else 0 endif else 30 endif"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="licenseExpDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="birthday" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rental" eType="#//Rental"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rental" upperBound="-1"
+        eType="#//Rental"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Branch">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="address" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -66,6 +67,12 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BlackListed" eSuperTypes="#//Customer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="NoRentalsBlacklisted"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/PivotX">
+      <details key="NoRentalsBlacklisted" value="self.rental->forAll(r|r.startingDate&lt;self.blackListedDate)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="blackListedDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RentalAgreement"/>
@@ -76,7 +83,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="QuoteOverZero" value="self.value>0"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MyEnum">
     <eLiterals name="eins"/>

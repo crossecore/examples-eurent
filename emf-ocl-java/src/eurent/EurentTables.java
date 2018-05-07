@@ -55,6 +55,7 @@ public class EurentTables
 	 */
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_eurent = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("eurent", null, eurent.EurentPackage.eINSTANCE);
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_BlackListed = eurent.EurentTables.PACKid_eurent.getClassId("BlackListed", 0);
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Car = eurent.EurentTables.PACKid_eurent.getClassId("Car", 0);
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_CarGroup = eurent.EurentTables.PACKid_eurent.getClassId("CarGroup", 0);
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Customer = eurent.EurentTables.PACKid_eurent.getClassId("Customer", 0);
@@ -67,12 +68,16 @@ public class EurentTables
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_15 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("15");
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_30 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("30");
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_5 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("5");
+	public static final /*@NonInvalid*/ java.lang.String STR_BlackListed_c_c_NoRentalsBlacklisted = "BlackListed::NoRentalsBlacklisted";
 	public static final /*@NonInvalid*/ java.lang.String STR_Quote_c_c_QuoteOverZero = "Quote::QuoteOverZero";
 	public static final /*@NonInvalid*/ java.lang.String STR_high = "high";
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_Car = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(eurent.EurentTables.CLSSid_Car);
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_CarGroup = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(eurent.EurentTables.CLSSid_CarGroup);
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_Customer = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(eurent.EurentTables.CLSSid_Customer);
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_Rental = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(eurent.EurentTables.CLSSid_Rental);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_Rental = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(eurent.EurentTables.CLSSid_Rental);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_Car = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(eurent.EurentTables.CLSSid_Car);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SEQ_CLSSid_CarGroup = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(eurent.EurentTables.CLSSid_CarGroup);
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SET_CLSSid_Car = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(eurent.EurentTables.CLSSid_Car);
 	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SET_CLSSid_RentalAgreement = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(eurent.EurentTables.CLSSid_RentalAgreement);
 

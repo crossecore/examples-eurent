@@ -8,7 +8,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -40,12 +39,20 @@ public class EurentValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "eurent";
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'No Rentals Blacklisted' of 'Black Listed'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int BLACK_LISTED__NO_RENTALS_BLACKLISTED = 1;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Quote Over Zero' of 'Quote'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int QUOTE__QUOTE_OVER_ZERO = 1;
+	public static final int QUOTE__QUOTE_OVER_ZERO = 2;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -53,7 +60,7 @@ public class EurentValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 2;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -167,7 +174,27 @@ public class EurentValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateBlackListed(BlackListed blackListed, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(blackListed, diagnostics, context);
+		if (!validate_NoCircularContainment(blackListed, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(blackListed, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBlackListed_NoRentalsBlacklisted(blackListed, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the NoRentalsBlacklisted constraint of '<em>Black Listed</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBlackListed_NoRentalsBlacklisted(BlackListed blackListed, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return blackListed.NoRentalsBlacklisted(diagnostics, context);
 	}
 
 	/**

@@ -5,15 +5,10 @@ package eurent.impl;
 import eurent.EurentPackage;
 import eurent.EurentTables;
 import eurent.Quote;
-
 import java.lang.reflect.InvocationTargetException;
-
-import java.math.BigInteger;
-
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
@@ -21,19 +16,14 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
-
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
-
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
-
 import org.eclipse.ocl.pivot.values.IntegerValue;
 
 /**
@@ -58,7 +48,7 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigInteger VALUE_EDEFAULT = null;
+	protected static final int VALUE_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -68,7 +58,7 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	 * @generated
 	 * @ordered
 	 */
-	protected BigInteger value = VALUE_EDEFAULT;
+	protected int value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,7 +84,7 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BigInteger getValue() {
+	public int getValue() {
 		return value;
 	}
 
@@ -103,8 +93,8 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(BigInteger newValue) {
-		BigInteger oldValue = value;
+	public void setValue(int newValue) {
+		int oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EurentPackage.QUOTE__VALUE, oldValue, value));
@@ -137,17 +127,10 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 			symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-			/*@Caught*/ /*@NonNull*/ Object CAUGHT_result;
-			try {
-				final /*@NonInvalid*/ BigInteger value = this.getValue();
-				final /*@NonInvalid*/ IntegerValue BOXED_value = value == null ? null : ValueUtil.integerValueOf(value);
-				final /*@Thrown*/ boolean result = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, BOXED_value, EurentTables.INT_0).booleanValue();
-				CAUGHT_result = result;
-			}
-			catch (Exception e) {
-				CAUGHT_result = ValueUtil.createInvalidValue(e);
-			}
-			final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, EurentTables.STR_Quote_c_c_QuoteOverZero, this, (Object)null, diagnostics, context, (Object)null, severity_0, CAUGHT_result, EurentTables.INT_0).booleanValue();
+			final /*@NonInvalid*/ int value = this.getValue();
+			final /*@NonInvalid*/ IntegerValue BOXED_value = ValueUtil.integerValueOf(value);
+			final /*@NonInvalid*/ boolean result = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, BOXED_value, EurentTables.INT_0).booleanValue();
+			final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, EurentTables.STR_Quote_c_c_QuoteOverZero, this, (Object)null, diagnostics, context, (Object)null, severity_0, result, EurentTables.INT_0).booleanValue();
 			symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -176,7 +159,7 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EurentPackage.QUOTE__VALUE:
-				setValue((BigInteger)newValue);
+				setValue((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -206,7 +189,7 @@ public class QuoteImpl extends MinimalEObjectImpl.Container implements Quote {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case EurentPackage.QUOTE__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

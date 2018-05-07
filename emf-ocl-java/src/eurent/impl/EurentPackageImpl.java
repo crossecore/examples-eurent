@@ -415,6 +415,15 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getBlackListed__NoRentalsBlacklisted__DiagnosticChain_Map() {
+		return blackListedEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRentalAgreement() {
 		return rentalAgreementEClass;
 	}
@@ -515,6 +524,7 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 
 		blackListedEClass = createEClass(BLACK_LISTED);
 		createEAttribute(blackListedEClass, BLACK_LISTED__BLACK_LISTED_DATE);
+		createEOperation(blackListedEClass, BLACK_LISTED___NO_RENTALS_BLACKLISTED__DIAGNOSTICCHAIN_MAP);
 
 		rentalAgreementEClass = createEClass(RENTAL_AGREEMENT);
 
@@ -575,7 +585,7 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 		initEAttribute(getCustomer_Discount(), ecorePackage.getEInt(), "discount", null, 1, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCustomer_LicenseExpDate(), ecorePackage.getEDate(), "licenseExpDate", null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCustomer_Birthday(), ecorePackage.getEDate(), "birthday", null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCustomer_Rental(), this.getRental(), null, "rental", null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCustomer_Rental(), this.getRental(), null, "rental", null, 0, -1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(branchEClass, Branch.class, "Branch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBranch_Address(), ecorePackage.getEString(), "address", null, 0, 1, Branch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -591,15 +601,24 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 		initEClass(blackListedEClass, BlackListed.class, "BlackListed", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBlackListed_BlackListedDate(), ecorePackage.getEDate(), "blackListedDate", null, 0, 1, BlackListed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(rentalAgreementEClass, RentalAgreement.class, "RentalAgreement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(quoteEClass, Quote.class, "Quote", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getQuote_Value(), ecorePackage.getEBigInteger(), "value", null, 0, 1, Quote.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		EOperation op = initEOperation(getQuote__QuoteOverZero__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "QuoteOverZero", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getBlackListed__NoRentalsBlacklisted__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "NoRentalsBlacklisted", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(rentalAgreementEClass, RentalAgreement.class, "RentalAgreement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(quoteEClass, Quote.class, "Quote", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getQuote_Value(), ecorePackage.getEInt(), "value", null, 0, 1, Quote.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getQuote__QuoteOverZero__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "QuoteOverZero", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
@@ -631,6 +650,12 @@ public class EurentPackageImpl extends EPackageImpl implements EurentPackage {
 		  (this, 
 		   source, 
 		   new String[] {
+		   });	
+		addAnnotation
+		  (blackListedEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "NoRentalsBlacklisted"
 		   });	
 		addAnnotation
 		  (quoteEClass, 

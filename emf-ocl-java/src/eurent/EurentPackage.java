@@ -233,7 +233,7 @@ public interface EurentPackage extends EPackage {
 	int CUSTOMER__BIRTHDAY = 5;
 
 	/**
-	 * The feature id for the '<em><b>Rental</b></em>' reference.
+	 * The feature id for the '<em><b>Rental</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -443,7 +443,7 @@ public interface EurentPackage extends EPackage {
 	int BLACK_LISTED__BIRTHDAY = CUSTOMER__BIRTHDAY;
 
 	/**
-	 * The feature id for the '<em><b>Rental</b></em>' reference.
+	 * The feature id for the '<em><b>Rental</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -470,13 +470,22 @@ public interface EurentPackage extends EPackage {
 	int BLACK_LISTED_FEATURE_COUNT = CUSTOMER_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>No Rentals Blacklisted</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACK_LISTED___NO_RENTALS_BLACKLISTED__DIAGNOSTICCHAIN_MAP = CUSTOMER_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Black Listed</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLACK_LISTED_OPERATION_COUNT = CUSTOMER_OPERATION_COUNT + 0;
+	int BLACK_LISTED_OPERATION_COUNT = CUSTOMER_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link eurent.impl.RentalAgreementImpl <em>Rental Agreement</em>}' class.
@@ -725,10 +734,10 @@ public interface EurentPackage extends EPackage {
 	EAttribute getCustomer_Birthday();
 
 	/**
-	 * Returns the meta object for the reference '{@link eurent.Customer#getRental <em>Rental</em>}'.
+	 * Returns the meta object for the reference list '{@link eurent.Customer#getRental <em>Rental</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Rental</em>'.
+	 * @return the meta object for the reference list '<em>Rental</em>'.
 	 * @see eurent.Customer#getRental()
 	 * @see #getCustomer()
 	 * @generated
@@ -852,6 +861,16 @@ public interface EurentPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getBlackListed_BlackListedDate();
+
+	/**
+	 * Returns the meta object for the '{@link eurent.BlackListed#NoRentalsBlacklisted(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Rentals Blacklisted</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>No Rentals Blacklisted</em>' operation.
+	 * @see eurent.BlackListed#NoRentalsBlacklisted(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getBlackListed__NoRentalsBlacklisted__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link eurent.RentalAgreement <em>Rental Agreement</em>}'.
@@ -1054,7 +1073,7 @@ public interface EurentPackage extends EPackage {
 		EAttribute CUSTOMER__BIRTHDAY = eINSTANCE.getCustomer_Birthday();
 
 		/**
-		 * The meta object literal for the '<em><b>Rental</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Rental</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1154,6 +1173,14 @@ public interface EurentPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute BLACK_LISTED__BLACK_LISTED_DATE = eINSTANCE.getBlackListed_BlackListedDate();
+
+		/**
+		 * The meta object literal for the '<em><b>No Rentals Blacklisted</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation BLACK_LISTED___NO_RENTALS_BLACKLISTED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getBlackListed__NoRentalsBlacklisted__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link eurent.impl.RentalAgreementImpl <em>Rental Agreement</em>}' class.

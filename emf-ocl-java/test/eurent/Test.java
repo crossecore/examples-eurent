@@ -16,7 +16,13 @@ import eurent.util.EurentValidator;
 public class Test {
 	private Quote quote;
 	private Car car;
+	private Customer customer;
+	private BlackListed blackListed;
+	
 	private EurentValidator validator;
+	
+	private int NUMBER_EXPERIMENTS = 1000;
+	private int NUMBER_BLACKLISTED = 1000;
 	
 	
 	@Before
@@ -32,18 +38,38 @@ public class Test {
 		EssentialOCLStandaloneSetup.doSetup();
 		
 		quote = EurentFactory.eINSTANCE.createQuote();
+		customer = EurentFactory.eINSTANCE.createCustomer(); 
 		car = EurentFactory.eINSTANCE.createCar();
+		blackListed = EurentFactory.eINSTANCE.createBlackListed();
 		validator = EurentValidator.INSTANCE;
+		
+		for(int i=0;i<NUMBER_BLACKLISTED;i++) {
+			
+			blackListed = EurentFactory.eINSTANCE.createBlackListed();
+		}
 	}
 
 	@org.junit.Test
 	public void testInvariant() {
 		
-		quote.setValue(BigInteger.valueOf(0));
+		quote.setValue(0);
 		Assert.assertFalse(validator.validateQuote_QuoteOverZero(quote, null, null));
 		
-		quote.setValue(BigInteger.valueOf(1));
+		quote.setValue(1);
 		Assert.assertTrue(validator.validateQuote_QuoteOverZero(quote, null, null));
+		
+		long stopwatch;
+
+		
+		for(int i=0;i<NUMBER_EXPERIMENTS;i++) {
+			
+			
+			stopwatch = System.nanoTime();
+			validator.validateBlackListed_NoRentalsBlacklisted(blackListed, null, null);
+			stopwatch = System.nanoTime()-stopwatch;
+			System.out.println(stopwatch);
+		}
+	
 	}
 	
 	
